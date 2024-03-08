@@ -9,7 +9,7 @@ async function seed() {
         }
     });
 
-    console.log('User created', user);
+    console.log('User created 1', user);
 
     process.exit(0);
 }
