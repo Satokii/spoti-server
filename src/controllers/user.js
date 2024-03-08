@@ -1,20 +1,26 @@
 const jwt = require('jsonwebtoken');
 const secret = process.env.JWT_SECRET
+const bcrypt = require('bcrypt')
 
-const dummyUser = {
-    username: 'User',
-    password: 'Password123'
-}
+const { findUserDb } = require('../domains/user.js')
 
 const login = async (req, res) => {
     const { username, password } = req.body
 
-    if (username === dummyUser.username && password === dummyUser.password) {
-        const token = jwt.sign(dummyUser, secret)
-        return res.status(201).json({ token })
-    }
-    
-    return res.status(401).json({ error: "incorrect login credentials provided"})
+    const foundUser = await findUserDb(username)
+
+    if (!foundUser) {
+        return res.status(401).json({ error: 'Invalid username or password.' })
+    } 
+
+    const passwordsMatch = await bcrypt.compare(password, foundUser.password)
+
+    if (!passwordsMatch) {
+        return res.status(401).json({ error: 'Invalid username or password.' })
+    } 
+
+    const token = jwt.sign({ username }, secret)
+    return res.status(201).json({ token })
 }
 
 module.exports = { login }
