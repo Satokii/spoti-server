@@ -9,6 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 const userRouter = require("./routers/user.js")
+const tracksRouter = require("./routers/tracks.js")
 
 app.use(userRouter)
 
