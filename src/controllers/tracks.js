@@ -4,6 +4,10 @@ const tracks = async (req, res) => {
     const { track_id, track_name } = req.body
     const findTrackById = await findTrackByIdDb(track_id)
 
+    if (track_name === "") {
+        return
+    }
+
     if (!findTrackById) {
         const newTrack = await addTrack(track_id, track_name)
         return res.status(201).json({ track: newTrack })
