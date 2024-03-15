@@ -5,7 +5,7 @@ const tracks = async (req, res) => {
     const findTrackById = await findTrackByIdDb(id)
 
     if (findTrackById) {
-        console.log(found)
+        console.log('found')
     }
 
     return res.status(201).json({ message: "Track added" })
