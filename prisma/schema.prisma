@@ -31,6 +31,7 @@ model Profile {
 model Tracks {
   id           Int       @id @default(autoincrement())
   track_id     String    @unique
+  track_name   String    @default("")
   tally        Int
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt

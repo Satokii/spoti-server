@@ -1,16 +1,16 @@
 const { findTrackByIdDb, addTrack, updateTrackTally } = require('../domains/tracks.js')
 
 const tracks = async (req, res) => {
-    const { track_id } = req.body
+    const { track_id, track_name } = req.body
     const findTrackById = await findTrackByIdDb(track_id)
 
     if (!findTrackById) {
-        const newTrack = await addTrack(track_id)
+        const newTrack = await addTrack(track_id, track_name)
         return res.status(201).json({ track: newTrack })
     }
 
     if (findTrackById) {
-        const updatedTrack = await updateTrackTally(track_id)
+        const updatedTrack = await updateTrackTally(track_id, track_name)
         return res.status(201).json({ track: updatedTrack })
     }
 
