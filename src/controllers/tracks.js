@@ -1,4 +1,4 @@
-const { findTrackByIdDb, addTrack, updateTrackTally } = require('../domains/tracks.js')
+const { findTrackByIdDb, addTrack, updateTrackTally, getAllTracksDb } = require('../domains/tracks.js')
 
 const tracks = async (req, res) => {
     const { track_id, track_name } = req.body
@@ -17,4 +17,16 @@ const tracks = async (req, res) => {
     return res.status(500).json({ error: "Server error, please try again." })
 }
 
-module.exports = { tracks }
+const getAllTracks = async (req, res) => {
+
+    try {
+        const tracks = await getAllTracksDb()
+        return res.status(200).json({ tracks })
+    }
+    catch {
+        return res.status(500).json({ error: 'Error retrieving all tracks'})
+    }
+
+}
+
+module.exports = { tracks, getAllTracks }

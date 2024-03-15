@@ -23,4 +23,6 @@ const updateTrackTally = async (track_id, track_name) => await prisma.tracks.upd
     }
 })
 
-module.exports = { findTrackByIdDb, addTrack, updateTrackTally }
+const getAllTracksDb = async (id) => await prisma.tracks.findMany({})
+
+module.exports = { findTrackByIdDb, addTrack, updateTrackTally, getAllTracksDb }
