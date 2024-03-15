@@ -27,3 +27,11 @@ model Profile {
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
 }
+
+model Tracks {
+  id           Int       @id @default(autoincrement())
+  track_id     Int       @unique
+  tally        Int
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}

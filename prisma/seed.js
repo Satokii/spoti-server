@@ -32,8 +32,16 @@ async function seed() {
         }
     })
 
+    const trackTally = await prisma.tracks.create({
+        data: {
+            track_id: 1,
+            tally: 0
+        }
+    })
+
     console.log('User created', user)
     console.log('Profile created', profile)
+    console.log('Track Tally created', trackTally)
 
     process.exit(0);
 }
