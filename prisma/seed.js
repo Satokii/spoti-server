@@ -34,7 +34,7 @@ async function seed() {
 
     const trackTally = await prisma.tracks.create({
         data: {
-            track_id: 1,
+            track_id: '123',
             tally: 0
         }
     })

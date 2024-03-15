@@ -1,19 +1,19 @@
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient();
 
-const findTrackByIdDb = async (id) => await prisma.tracks.findUnique({
-    where: { id }
+const findTrackByIdDb = async (track_id) => await prisma.tracks.findUnique({
+    where: { track_id }
 })
 
-const addTrack = async (id) => await prisma.tracks.create({
+const addTrack = async (track_id) => await prisma.tracks.create({
     data: {
-        track_id: id,
+        track_id,
         tally: 1
     }
 })
 
-const updateTrackTally = async (id) => await prisma.tracks.update({
-    where: { id },
+const updateTrackTally = async (track_id) => await prisma.tracks.update({
+    where: { track_id },
     data: {
         tally: {
             increment: 1
