@@ -7,6 +7,6 @@ The repo for the Codeify app is [here](https://github.com/Satokii/spotify-clone)
 
 ## Features
 
-- A PostgreSQL for database
+- A PostgreSQL database
 - Primsa ORM to query the database
-- JWT and Bcrypt for authentication.
+- JWT and Bcrypt for authentication
